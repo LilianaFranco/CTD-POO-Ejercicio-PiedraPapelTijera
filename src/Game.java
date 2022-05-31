@@ -1,11 +1,8 @@
-import java.util.Arrays;
-
 public class Game {
     int playedGames;
-    String[] rightOptions;
 
-    public Game(String[] rightOptions) {
-        this.rightOptions = rightOptions;
+    public void Game() {
+        this.playedGames = 0;
     }
 
     public int getPlayedGames() {
@@ -16,39 +13,36 @@ public class Game {
         this.playedGames = playedGames;
     }
 
-    int whoWins(String playerOneOption, String playerTwoOption) {
+    public void addPlayedGames(int newGame){
+        this.playedGames = playedGames + newGame;
+    }
 
-        if (Arrays.stream(this.rightOptions).anyMatch(i -> i == playerOneOption) && Arrays.stream(this.rightOptions).anyMatch(i -> i == playerTwoOption)){
-            if (playerOneOption == playerTwoOption){
-                return 0;
-            }
-            if (playerOneOption == "1") {
-                switch (playerTwoOption) {
-                    case "2":
-                        return 2;
-                    case "3":
-                        return 1;
-                }
-            }
-            else if(playerOneOption == "2") {
-                switch (playerTwoOption) {
-                    case "1":
-                        return 1;
-                    case "3":
-                        return 2;
-                }
-            }
-            else {
-                switch (playerTwoOption) {
-                    case "1":
-                        return 2;
-                    case "2":
-                        return 1;
-                }
-            }
+    int whoWins(String playerOne, String playerTwo) {
+
+        if (playerOne.equals(playerTwo)){
+            return 0;
         }
-        if (playerOneOption == "*") {
+        if (playerOne.equals("1") && playerTwo.equals("2")) {
+            return 2;
+        }
+        if (playerOne.equals("1") && playerTwo.equals("3")) {
+            return 1;
+        }
+        if (playerOne.equals("2") && playerTwo.equals("1")) {
+            return 1;
+        }
+        if (playerOne.equals("2") && playerTwo.equals("3")) {
+            return 2;
+        }
+        if (playerOne.equals("3") && playerTwo.equals("1")) {
+            return 2;
+        }
+        if (playerOne.equals("3") && playerTwo.equals("2")) {
+            return 1;
+        }
+        if (playerOne.equals("*")){
             return 4;
         }
         return 3;
     }
+}
